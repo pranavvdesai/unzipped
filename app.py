@@ -2,6 +2,14 @@ from flask import Flask,render_template,request,redirect,session,flash,redirect,
 import os
 from passlib.hash import sha256_crypt
 import mysql.connector
+import requests
+import cv2
+from flask import Response
+import urllib.request
+from werkzeug.utils import secure_filename
+import tensorflow.keras
+from PIL import Image, ImageOps
+import numpy as np
 
 app= Flask(__name__)
 app.secret_key=os.urandom(24)
@@ -79,6 +87,23 @@ def add_user():
 def logout():
     session.pop('user_id')
     return redirect('/')
+
+@app.route('/video1_feed')
+def video1_feed():
+    return render_template('video1.html')
+
+@app.route('/video2_feed')
+def video2_feed():
+    return render_template('video2.html')
+
+@app.route('/video1')
+def video1():
+	return render_template("video1.html")
+
+@app.route('/video2')
+def video2():
+	return render_template("video2.html")
+
 
 
 if __name__ == '__main__':
