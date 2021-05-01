@@ -14,7 +14,7 @@ import numpy as np
 app= Flask(__name__)
 app.secret_key=os.urandom(24)
  
-conn=mysql.connector.connect(host="remotemysql.com",user="9YwiYaINDg",password="WB2u9rVHb5",database="9YwiYaINDg")
+conn=mysql.connector.connect(host="remotemysql.com",user="9YwiYaINDg",password="######",database="9YwiYaINDg")
 cursor=conn.cursor()
 
 
