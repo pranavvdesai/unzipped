@@ -103,6 +103,44 @@ def video1():
 @app.route('/video2')
 def video2():
 	return render_template("video2.html")
+@app.route('/image1')
+def image1():
+    return render_template('image1.html')
+
+
+
+
+@app.route('/image1', methods=['POST'])
+def upload_image1():
+    if 'file' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        flash('No image selected for uploading')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #print('upload_image filename: ' + filename)
+        flash('Image successfully uploaded and displayed below')
+        np.set_printoptions(suppress=True)
+        model = tensorflow.keras.models.load_model('keras_model.h5')
+        data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+        image = Image.open(r'C:\Users\prana\OneDrive\Desktop\SAP\static\uploads\three.jpeg')
+        size = (224, 224)
+        image = ImageOps.fit(image, size, Image.ANTIALIAS)
+        image_array = np.asarray(image)
+        #image.show()
+        normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
+        data[0] = normalized_image_array
+        prediction = model.predict(data)
+        #print(prediction)
+        return render_template('image1.html', filename=filename, prediction=prediction)
+    else:
+        flash('Allowed image types are - png, jpg, jpeg, gif')
+        return redirect(request.url)
+
 
 
 

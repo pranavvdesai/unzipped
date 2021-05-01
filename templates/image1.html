@@ -1,0 +1,118 @@
+{% extends "layout.html" %} {% block content %}
+
+<!-- #expression-tensorflow -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/vidstyle.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+    <section id="services" class="services">
+        <div class="container">
+    
+          <div class="section-title">
+            <h2>Upload your Image</h2>
+            <p>see the AI run on pre-existing photos</p>
+          </div>
+    
+          <div class="row">
+            <div class="col-md-6 d-flex ">
+              <div class="icon-box">
+                  
+                <p>
+                    {% with messages = get_flashed_messages() %}
+                      {% if messages %}
+                        <ul>
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                      {% endif %}
+                    {% endwith %}
+                </p>
+                {% if filename %}
+                    <div>
+                        <img src="{{ url_for('display_image', filename=filename) }}" style="width: 50%; height: 100%px;">
+                    </div>
+                    <div>
+                        <h1 style="display: none;" id="p1">{{ prediction[0][0] }}</h1>
+                        <h1 style="display: none;" id="p2">{{ prediction[0][1] }}</h1>
+                    </div>
+                {% endif %} 
+                <form method="post" action="/image1" enctype="multipart/form-data">
+                    <dl>
+                        <p>
+                            <input type="file" name="file" class="form-control" autocomplete="off" required>
+                        </p>
+                    </dl>
+                    <p>
+                        <input type="submit" value="Submit" class="btn btn-outline-success">
+                    </p>
+                </form>
+              </div>
+            </div>
+    
+            <div class="col-md-6 progressclass">
+              <div class="icon-box">
+                <h2 class="text-white" style="width: 35%;">Progress</h2>
+            <hr class="marginstyle">
+          
+            <div class="progress mt-5 progresstyle" style="width:90%; height: 30px;  background: rgba(255, 255, 255, 0.103); box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border-radius: 20px; 
+            ">
+                <div class="progress-bar bg-success" style="width:0%" id="class1"></div>
+            </div>
+            <br>
+            <div class="progress progresstyle" style="width:90%; height: 30px;  background: rgba(255,255,255,0.103);  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border-radius: 20px;
+            ">
+                <div class="progress-bar bg-danger" style="width:0%" id="class2"></div>
+            </div>
+               
+                
+              </div>
+            </div>
+    
+            
+    
+        
+    
+          </div>
+    
+        </div>
+      </section><!-- End Services Section -->
+    
+    </header>
+
+    
+<script>
+    const class1 = document.getElementById("class1")
+    const class2 = document.getElementById("class2")
+    p1=((document.getElementById("p1").textContent)*100+"%")
+    p2=((document.getElementById("p2").textContent)*100+"%")
+    a=(document.getElementById("p1").textContent)*100
+    b=(document.getElementById("p2").textContent)*100
+    d1 = Math.round(a*100)/100
+    d2 = Math.round(b*100)/100
+    class1.style.width=`${p1}`
+    class2.style.width=`${p2}`
+    class1.textContent = d1+"%"
+    class2.textContent = d2+"%"
+</script>
+
+</body>
+</html>
+
+{% endblock content %}
