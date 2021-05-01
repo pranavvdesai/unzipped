@@ -109,6 +109,16 @@ def image1():
 
 
 
+UPLOAD_FOLDER = 'static/uploads/'
+
+app.secret_key = "secret key"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/image1', methods=['POST'])
 def upload_image1():
@@ -127,7 +137,7 @@ def upload_image1():
         np.set_printoptions(suppress=True)
         model = tensorflow.keras.models.load_model('keras_model.h5')
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-        image = Image.open(r'C:\Users\prana\OneDrive\Desktop\SAP\static\uploads\three.jpeg')
+        image = Image.open(r'static\uploads\pose2.jpg')
         size = (224, 224)
         image = ImageOps.fit(image, size, Image.ANTIALIAS)
         image_array = np.asarray(image)
