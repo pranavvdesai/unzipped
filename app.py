@@ -183,5 +183,25 @@ def upload_image2():
         return redirect(request.url)
 
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+
+@app.route('/admin_add',methods=['POST'])
+def admin_add():
+    global email
+    
+    email=request.form.get('email')
+    title=request.form.get('title')
+    message=request.form.get('message')
+    location=request.form.get('location')
+    cursor.execute("""INSERT INTO `admindatabase` (`email`,`title`,`message`,`location`) VALUES ('{}','{}','{}','{}')""".format(email,title,message,location))
+    conn.commit()
+    return redirect(url_for('home'))
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
