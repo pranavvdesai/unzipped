@@ -1,3 +1,7 @@
+
+
+
+
 {% extends "layout.html" %} {% block content %}
 
 <!-- expression -->
@@ -30,35 +34,35 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Teachable machine</h2>
-        <p>My Services</p>
+        <h2>Pose Detection Test</h2>
+        <p>Perfecting your ramp walks</p>
       </div>
 
       <div class="row">
         <div class="col-md-6 d-flex ">
           <div class="icon-box">
-              <div><canvas id="canvas"></canvas></div>
-              <div id="label-container"></div>
+              
+
+<div><canvas id="canvas"></canvas></div>
+<div id="label-container"></div>
           </div>
         </div>
 
         <div class="col-md-6 progressclass">
           <div class="icon-box">
-            <!--<h2 class="text-white" style="width: 35%;">Progress</h2>-->
-            <h2>
-              <a href="" class="typewrite" data-period="2000" data-type='[ "Good Pose..."]' style="color: lightgreen;">
-                <span class="wrap"></span>
-              </a>
-            </h2>
+            <h2 class="text-white" style="width: 35%;">Progress</h2>
             <hr class="marginstyle">
-            <div class="progress progresstyle" style="width:90%; height: 30px;  background: rgba(255, 255, 255, 0.103); box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border-radius: 20px;">
-                <div class="progress-bar bg-info" style="width:0%" id="class1"></div>
+          
+            <div class="progress mt-5 progresstyle" style="width:90%; height: 30px;  background: rgba(255, 255, 255, 0.103); box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border-radius: 20px; 
+            ">
+                <div class="progress-bar" style="width:0%" id="class1"></div>
             </div>
-            <br> 
+            <br>
             <div class="progress progresstyle" style="width:90%; height: 30px;  background: rgba(255,255,255,0.103);  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border-radius: 20px;">
-                <div class="progress-bar bg-danger" style="width:0%" id="class2"></div>
+            border-radius: 20px;
+            ">
+                <div class="progress-bar" style="width:0%" id="class2"></div>
             </div>
             
           </div>
@@ -101,11 +105,10 @@
 
 <script type="text/javascript">
     
-    const URL = "https://teachablemachine.withgoogle.com/models/Zipkz91_g/";
+    const URL = "https://teachablemachine.withgoogle.com/models/uFD4aqg7x/";
     let model, webcam, ctx, labelContainer, maxPredictions;
     const class1 = document.getElementById("class1")
     const class2 = document.getElementById("class2")
-
     async function stop(){
         await webcam.stop()
     }
@@ -146,7 +149,7 @@
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
        
         const prediction = await model.predict(posenetOutput);
-        console.log(prediction)
+       
         p1 = ((prediction[0].probability)*100+"%")
         p2 = ((prediction[1].probability)*100+"%")
         d1 = (((prediction[0].probability)*100)).toFixed(2)
@@ -168,67 +171,6 @@
             }
         }
     }
-
-
-
-
-
-    var TxtType = function(el, toRotate, period) {
-  this.toRotate = toRotate;
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
-};
-
-TxtType.prototype.tick = function() {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
-
-  if (this.isDeleting) {
-  this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-  this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-
-  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
-
-  var that = this;
-  var delta = 200 - Math.random() * 100;
-
-  if (this.isDeleting) { delta /= 2; }
-
-  if (!this.isDeleting && this.txt === fullTxt) {
-  delta = this.period;
-  this.isDeleting = true;
-  } else if (this.isDeleting && this.txt === '') {
-  this.isDeleting = false;
-  this.loopNum++;
-  delta = 500;
-  }
-
-  setTimeout(function() {
-  that.tick();
-  }, delta);
-};
-
-window.onload = function() {
-  var elements = document.getElementsByClassName('typewrite');
-  for (var i=0; i<elements.length; i++) {
-      var toRotate = elements[i].getAttribute('data-type');
-      var period = elements[i].getAttribute('data-period');
-      if (toRotate) {
-        new TxtType(elements[i], JSON.parse(toRotate), period);
-      }
-  }
-  // INJECT CSS
-  var css = document.createElement("style");
-  css.type = "text/css";
-  css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-  document.body.appendChild(css);
-};
 </script>
 </body>
 </html>
