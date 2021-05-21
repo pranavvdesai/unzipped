@@ -62,14 +62,9 @@ def loginval():
                 session['user_id']=True
                 flash('account logged in')
                 return redirect(url_for('home'))
-                # return render_template('home.html',displayname=displayname)
             else:
                 error="Wrong Email or Password"
                 return render_template('login.html',error=error)
-        # else:
-        #     errors="invlaid user. pls register"
-        #     return render_template('login.html',errors=errors)
-            
     except Exception as e:
         error="invalid email.register"
         return render_template('login.html',error=error)
@@ -284,9 +279,3 @@ def dashboard_add():
 if __name__ == '__main__':
     app.run(debug=True)
 
-
-# error handler
-
-# @app.errorhandler(404)
-# def error_handler_page(e):
-#     return render_template('error.html')
