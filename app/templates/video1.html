@@ -28,28 +28,6 @@
 </head>
 <body>
 <header>
-    <!--<img src="{{ url_for('video1_feed') }}">-->
-<!-- <div class="container">
-<div class="row">
-<div class="col-md-6 center">
-
-<button type="button" onclick="init()">Start</button>
-<button type="button" onclick="stop()">Stop</button>
-<div><canvas id="canvas"></canvas></div>
-<div id="label-container"></div>
-</div>
-<div class="col-md-6 center">
-<h1>progress</h1>
-<div class="progress" style="width:30%">
-    <div class="progress-bar" style="width:0%" id="class1"></div>
-</div>
-<div class="progress" style="width:30%">
-    <div class="progress-bar" style="width:0%" id="class2"></div>
-</div>
-</div>
-</div>
-</div> -->
-
 
 
   <!-- ======= Services Section ======= -->
@@ -184,14 +162,6 @@
         class2.style.width = `${p2}`
         class1.textContent = d1
         class2.textContent = d2
-        /*for (let i = 0; i < maxPredictions; i++) {
-            //console.log(prediction[i].probability)
-            const classPrediction =
-                prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-        }*/
-
-      
         drawPose(pose);
     }
 
