@@ -15,22 +15,10 @@
     height: 100vh;
     background-size: cover;
     background-position: center;
-  }
-  
-  /* .center {
-      margin-top: 25%;
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      border-left: 1px solid rgba(255, 255, 255, 0.5);
-    } */
-  
+  } 
+
   section {
     overflow: hidden;
-    /* position: absolute; */
     width: 100%;
     height: 55%;
     top: 110px;
@@ -58,7 +46,6 @@
       height: 100%;
       padding: 15px;
       top: 0px;
-      /* top: 120px; */
     }
     section.section-show {
       top: 80px;
