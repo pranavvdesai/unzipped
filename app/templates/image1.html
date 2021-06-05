@@ -9,28 +9,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/vidstyle.css" rel="stylesheet">
-
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Document</title>
+    <title>Image test</title>
 </head>
 <body>
     <header>
     <section id="services" class="services">
         <div class="container">
-    
           <div class="section-title">
             <h2>Upload your Image</h2>
             <p>see the AI run on pre-existing photos</p>
           </div>
-    
           <div class="row">
             <div class="col-md-6 d-flex ">
-              <div class="icon-box">
-                  
+              <div class="icon-box">                
                 <p>
                     {% with messages = get_flashed_messages() %}
                       {% if messages %}
@@ -79,16 +74,9 @@
             border-radius: 20px;
             ">
                 <div class="progress-bar bg-danger" style="width:0%" id="class2"></div>
-            </div>
-               
-                
+            </div>             
               </div>
-            </div>
-    
-            
-    
-        
-    
+            </div>  
           </div>
     
         </div>
