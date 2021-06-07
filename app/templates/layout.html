@@ -22,12 +22,19 @@
       type="text/css"
       href="{{ url_for('static', filename='style.css') }}"
     />
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static', filename='admin.css') }}"
+    />
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
     {% if title %}
-    <title>app - {{ title }}</title>
+    <title>{{ title }}</title>
     {% else %}
-    <title>app</title>
+    <title>Unzipped</title>
     {% endif %}
+    
   </head>
   <body>
       {% with messages = get_flashed_messages(with_categories=true) %}
