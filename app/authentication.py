@@ -1,11 +1,10 @@
-from flask import Flask,render_template,request,redirect,session,flash,redirect,url_for
-import mysql.connector
+from flask import Flask, render_template, request, redirect, session, flash, redirect, url_for
 from passlib.hash import sha256_crypt
 from werkzeug.utils import secure_filename
 from app import app
+from app import conn
+from app import cursor
 
-conn=mysql.connector.connect(host="remotemysql.com",user="9YwiYaINDg",password="WB2u9rVHb5",database="9YwiYaINDg")
-cursor=conn.cursor()
 
 @app.route('/home')
 def home():
@@ -14,49 +13,54 @@ def home():
     else:
         return redirect('/')
 
+
 @app.route("/loginvalidation", methods=['POST'])
 def loginval():
     global email
     global password
     global displayname
-    error=""
+    error = ""
     try:
-        email=request.form.get('email')
-        password=request.form.get('password')
-        cursor.execute("""SELECT * FROM `userfashion` WHERE `email` LIKE '{}'""".format(email))
-        userfashion=cursor.fetchone()[3]
-        if len(userfashion)>0:
-            if sha256_crypt.verify(password,userfashion):
-                cursor.execute("""SELECT * FROM `userfashion`  WHERE `email` LIKE '{}'""".format(email))
-                user=cursor.fetchone()
-                displayname=user[1]
-                session['user_id']=True
+        email = request.form.get('email')
+        password = request.form.get('password')
+        cursor.execute(
+            """SELECT * FROM `userfashion` WHERE `email` LIKE '{}'""".format(email))
+        userfashion = cursor.fetchone()[3]
+        if len(userfashion) > 0:
+            if sha256_crypt.verify(password, userfashion):
+                cursor.execute(
+                    """SELECT * FROM `userfashion`  WHERE `email` LIKE '{}'""".format(email))
+                user = cursor.fetchone()
+                displayname = user[1]
+                session['user_id'] = True
                 flash('account logged in')
                 return redirect(url_for('home'))
             else:
-                error="Wrong Email or Password"
-                return render_template('login.html',error=error)
+                error = "Wrong Email or Password"
+                return render_template('login.html', error=error)
     except Exception as e:
-        error="invalid email. Pls register"
-        return render_template('login.html',error=error)
+        error = "invalid email. Pls register"
+        return render_template('login.html', error=error)
 
-@app.route('/add_user',methods=['POST'])
+
+@app.route('/add_user', methods=['POST'])
 def add_user():
-    global name    
+    global name
     global phone_number
     global gender
-    name=request.form.get('username')
-    email=request.form.get('useremail')
-    password=sha256_crypt.encrypt((str(request.form.get('userpassword'))))
-    phone_number=request.form.get('userphone')
-    gender=request.form.get('gender')
-    cursor.execute("""INSERT INTO `userfashion` (`user_id`,`name`,`email`,`password`,`phone_number`,`gender`) VALUES (NULL,'{}','{}','{}','{}','{}')""".format(name,email,password,phone_number,gender))
+    name = request.form.get('username')
+    email = request.form.get('useremail')
+    password = sha256_crypt.encrypt((str(request.form.get('userpassword'))))
+    phone_number = request.form.get('userphone')
+    gender = request.form.get('gender')
+    cursor.execute("""INSERT INTO `userfashion` (`user_id`,`name`,`email`,`password`,`phone_number`,`gender`) VALUES (NULL,'{}','{}','{}','{}','{}')""".format(
+        name, email, password, phone_number, gender))
     conn.commit()
     flash('accoount created')
     return redirect('/login')
+
 
 @app.route('/logout')
 def logout():
     session.pop('user_id')
     return redirect('/')
-

@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,session,flash,redirect,url_for
+from flask import Flask, render_template, request, redirect, session, flash, redirect, url_for
 from app import app
 import os
 from werkzeug.utils import secure_filename
@@ -12,8 +12,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/image1', methods=['POST'])
 def upload_image1():
@@ -43,6 +45,7 @@ def upload_image1():
         flash('Allowed image types are - png, jpg, jpeg, gif')
         return redirect(request.url)
 
+
 @app.route('/image2', methods=['POST'])
 def upload_image2():
     if 'file' not in request.files:
@@ -70,6 +73,7 @@ def upload_image2():
     else:
         flash('Allowed image types are - png, jpg, jpeg, gif')
         return redirect(request.url)
+
 
 @app.route('/display/<filename>')
 def display_image(filename):
