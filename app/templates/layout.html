@@ -16,30 +16,31 @@
       crossorigin="anonymous"
     />
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-    <script src="https://kit.fontawesome.com/8a8316e13d.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/8a8316e13d.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="stylesheet"
       type="text/css"
       href="{{ url_for('static', filename='style.css') }}"
     />
     <link
-    rel="stylesheet"
-    type="text/css"
-    href="{{ url_for('static', filename='admin.css') }}"
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='admin.css') }}"
     />
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
     <title>Unzipped</title>
     {% endif %}
-    
   </head>
   <body>
-      {% with messages = get_flashed_messages(with_categories=true) %}
-     
-      {% endwith %} {% block content %}{% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %} {% endwith
+    %} {% block content %}{% endblock %}
 
     <!-- JavaScript -->
     <script
@@ -58,9 +59,11 @@
       crossorigin="anonymous"
     ></script>
     <!--Fontawesome-->
-    <script src="https://kit.fontawesome.com/2b73c9a97e.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/2b73c9a97e.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="text/javascript" src="/static/script1.js"></script>
     <script type="text/javascript" src="/static/script2.js"></script>
-  
   </body>
 </html>

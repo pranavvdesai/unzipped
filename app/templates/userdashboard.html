@@ -4,71 +4,88 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="/static/dashboard.css" rel="stylesheet">
+    <link href="/static/dashboard.css" rel="stylesheet" />
     <title>Find Jobs</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-    <section id="services" class="services">
+      <section id="services" class="services">
         <div class="container">
           <div class="section-title">
-            <h2>Search a city </h2>
+            <h2>Search a city</h2>
             <p>Find fashion jobs and events nearby</p>
           </div>
-    
+
           <div class="row">
-            <div class="col-md-6 offset-md-3  d-flex d-flex text-align-center justify-content-center mt-4">
-              
-                    <form class="form-inline" method="POST" action="/dashboard_add">
-                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchlocation">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>              
+            <div
+              class="
+                col-md-6
+                offset-md-3
+                d-flex d-flex
+                text-align-center
+                justify-content-center
+                mt-4
+              "
+            >
+              <form class="form-inline" method="POST" action="/dashboard_add">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                  name="searchlocation"
+                />
+                <button
+                  class="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </form>
             </div>
           </div>
         </div>
-      </section><!-- End Services Section -->
-   
+      </section>
+      <!-- End Services Section -->
     </header>
-<section>
-    <div class="container">
+    <section>
+      <div class="container">
         <div class="col-md-8 offset-md-2 p-0 mt-3">
-            <!-- feed -->
+          <!-- feed -->
           <div class="feed">
             {% for post in posts %}
             <div class="post mb-3">
-                <div class="post_header">     
-                  <div class="post_info">
-                    <h2>{{post[3]}}</h2>
-                    <p>{{post[0]}}</p>
-                  </div>
+              <div class="post_header">
+                <div class="post_info">
+                  <h2>{{post[3]}}</h2>
+                  <p>{{post[0]}}</p>
                 </div>
-                <div class="post_body"> 
-                  <h2><a class="article-title" href="#">{{ post[1] }}</a></h2>   
-                  <p>{{post[2]}}</p>
-                </div>
-                <div class="feed_inputoption">
-                  <div class="input_option">
-                  </div>
-                </div>
+              </div>
+              <div class="post_body">
+                <h2><a class="article-title" href="#">{{ post[1] }}</a></h2>
+                <p>{{post[2]}}</p>
+              </div>
+              <div class="feed_inputoption">
+                <div class="input_option"></div>
+              </div>
             </div>
-              {% endfor %}
+            {% endfor %}
           </div>
         </div>
-    </div>
-</section>
-
-</body>
+      </div>
+    </section>
+  </body>
 </html>
 
 {% endblock content %}
-
-
-

@@ -1,37 +1,63 @@
 {% extends "layout.html" %} {% block content %}
 <div class="body-main">
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6 mt-5">
-    <div class="content-section-register">
-      <h2 class="pb-2">Register</h2>
-      <form method="POST" action="/add_user">
-        <label>name</label><br>
-        <input type="text" class="form-control" name="username" placeholder="name"><br>
-      <label>Email</label><br>
-      <input type="email" class="form-control" name="useremail" placeholder="email"><br>
-      <label>passcode</label><br>
-      <input type="password" class="form-control" name="userpassword" placeholder="password"><br>
-      <label>phone number</label><br>
-      <input type="tel" class="form-control" name="userphone" placeholder="phone number"><br><br>
-      <div class="form-group"> <label for="gender">Select your gender:</label><br>
-        <select name="gender" id="">
-            <option value="">--choose an option--</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-            <option value="N">Prefer Not to say</option>
-        </select>
-      </div><br><br>  
-      <input type="submit" class="btn btn-block button-glass" value="Register">
-    </form>   
-    </div>
-    <div class="squares">
-      <div class="square square-1"></div> 
-      <div class="square square-2"></div> 
-      <div class="square square-3"></div> 
-      <div class="square square-4"></div> 
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 mt-5">
+      <div class="content-section-register">
+        <h2 class="pb-2">Register</h2>
+        <form method="POST" action="/add_user">
+          <label>name</label><br />
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            placeholder="name"
+          /><br />
+          <label>Email</label><br />
+          <input
+            type="email"
+            class="form-control"
+            name="useremail"
+            placeholder="email"
+          /><br />
+          <label>passcode</label><br />
+          <input
+            type="password"
+            class="form-control"
+            name="userpassword"
+            placeholder="password"
+          /><br />
+          <label>phone number</label><br />
+          <input
+            type="tel"
+            class="form-control"
+            name="userphone"
+            placeholder="phone number"
+          /><br /><br />
+          <div class="form-group">
+            <label for="gender">Select your gender:</label><br />
+            <select name="gender" id="">
+              <option value="">--choose an option--</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="N">Prefer Not to say</option>
+            </select>
+          </div>
+          <br /><br />
+          <input
+            type="submit"
+            class="btn btn-block button-glass"
+            value="Register"
+          />
+        </form>
+      </div>
+      <div class="squares">
+        <div class="square square-1"></div>
+        <div class="square square-2"></div>
+        <div class="square square-3"></div>
+        <div class="square square-4"></div>
+      </div>
     </div>
   </div>
-</div>
 </div>
 {% endblock content %}
